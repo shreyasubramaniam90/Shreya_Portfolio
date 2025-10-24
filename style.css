@@ -319,27 +319,36 @@ body {
 
 /* --- Projects Section (Images Removed and Tags Aligned) --- */
 .projects-grid {
-    display: flex; /* ADDED: Enables flex properties */
+    display: flex;
     flex-wrap: wrap;
-    align-items: stretch; /* ADDED: Ensures all items stretch to the height of the tallest item */
+    align-items: stretch; /* Ensures all cards have the same height */
 
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto 50px;
 }
 
-.project-card {
-    /* REMOVED: grid-template-columns property from here */
-    padding: 30px 20px 20px 20px;
-
-    /* ADDED: Width definition for flexbox alignment */
+/* Added: Styles for the clickable card wrapper */
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    /* Defines the width for flex-based columns */
     width: calc(33.333% - 20px);
+}
 
+.project-card-link .project-card {
+    cursor: pointer;
+}
+
+.project-card {
     background-color: var(--color-card-bg);
     border-radius: var(--border-radius);
+    padding: 30px 20px 20px 20px; /* Adjusted padding for better vertical alignment */
     text-align: left;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease;
+    height: 100%; /* Ensures stretching works */
 }
 
 .project-card:hover {
@@ -538,11 +547,9 @@ body.light-mode {
         grid-template-columns: repeat(2, 1fr);
     }
     .projects-grid {
-        /* Reset flex wrap for two columns on tablets */
         flex-wrap: wrap;
     }
-    .projects-grid .project-card {
-        /* Calculates half width minus the gap spacing */
+    .projects-grid .project-card-link {
         width: calc(50% - 15px);
     }
 
@@ -566,10 +573,9 @@ body.light-mode {
         grid-template-columns: 1fr;
     }
     .projects-grid {
-        /* Reset flex wrap for single column on mobile */
         flex-direction: column;
     }
-    .projects-grid .project-card {
+    .projects-grid .project-card-link {
         width: 100%;
     }
     .navbar ul {
